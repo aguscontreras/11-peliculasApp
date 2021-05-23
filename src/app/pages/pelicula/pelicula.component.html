@@ -1,0 +1,49 @@
+<div class="row animate__animated animate__fadeIn" *ngIf="movieDetails">
+  <div class="col-md-6">
+    <img
+      [src]="movieDetails.poster_path | poster"
+      [alt]="movieDetails.title"
+      class="img-thumbnail"
+    />
+  </div>
+
+  <div class="col-md-6">
+    <h3>{{ movieDetails.title }}</h3>
+
+    <div class="row">
+      <div class="col-auto me-auto">
+        <star-rating
+          [value]="movieDetails.vote_average"
+          [totalstars]="10"
+          checkedcolor="gold"
+          uncheckedcolor="gray"
+          size="14px"
+          readonly="false"
+        ></star-rating>
+      </div>
+      <div class="col-auto text-white">
+        {{ movieDetails.vote_average | number: "1.1-2" }}
+      </div>
+    </div>
+
+    <div class="row mt-4 text-white">
+      <div class="col">
+        {{ movieDetails.overview }}
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col">
+        <button class="btn btn-outline-info" (click)="onRegresar()">
+          Regresar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5" *ngIf="cast.length">
+  <div class="col">
+    <app-cast-slideshow [cast]="cast"></app-cast-slideshow>
+  </div>
+</div>
